@@ -1,0 +1,33 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Waves from "./components/Waves";
+
+const App: React.FC = () => {
+    return (
+        <>
+            <Waves
+                lineColor="#7A918D"
+                backgroundColor="rgba(23, 22, 20)"
+                waveSpeedX={0.02}
+                waveSpeedY={0.01}
+                waveAmpX={40}
+                waveAmpY={20}
+                friction={0.9}
+                tension={0.01}
+                maxCursorMove={120}
+                xGap={12}
+                yGap={36}
+            />
+            <div className="relative z-10 flex flex-row justify-center items-center">
+                <h1 className="text-8xl text-white font-bold text-center">
+                    Corevault
+                </h1>
+            </div>
+        </>
+    );
+};
+
+const container = document.getElementById("app");
+if (container) {
+    ReactDOM.createRoot(container).render(<App />);
+}
