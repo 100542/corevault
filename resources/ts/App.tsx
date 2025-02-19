@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Waves from "./components/Waves";
+import Index from './components/Index'
 
 const App: React.FC = () => {
     return (
@@ -18,11 +19,7 @@ const App: React.FC = () => {
                 xGap={12}
                 yGap={36}
             />
-            <div className="relative z-10 flex flex-row justify-center items-center">
-                <h1 className="text-8xl text-white font-bold text-center">
-                    Corevault
-                </h1>
-            </div>
+            <Index />
         </>
     );
 };
