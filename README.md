@@ -1,66 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Corevault
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Corevault is een trading platform die gebruik maakt van live API's om de prijs van verschillende cryptocurrencies te tracken.
+Deze currencies kunnen worden gekocht & verkocht, maar ook kunnen deze worden verhandeld. 
 
-## About Laravel
+## Hieronder een kleine handleiding over ReactTS & Laravel, zodat ik dat ook blijf onthouden.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Stap 1: Laravel aanmaken
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Als je nog geen werkend laravel project hebt opgestart kan je het volgende doen:
 
-## Learning Laravel
+Composer create-project laravel/Laravel dit-moet-een-projectnaam-zijn
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Stap 2: Installeer dependencies
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Laravel heeft vanaf versie 10 standaard Vite geinstalleerd. Dit kan je gebruiken voor de dependencies.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+React & React-DOM
+Npm install react react-dom
 
-## Laravel Sponsors
+TypeScript 
+Npm install –save-dev typescript @types/react @types/react-dom
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Vite React plugin
+Npm install –save-dev @vitejs/plugin-react
 
-### Premium Partners
+## Stap 3: TypeScript configuratie
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Om typescript te kunnen gebruiken, moet er een tsconfig file gemaakt worden.
 
-## Contributing
+Maak het bestand tsconfig.json aan in de root van je project met de volgende waardes:
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["resources/ts"]
+}
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Stap 4: Vite configuratie
 
-## Code of Conduct
+Bewerk het bestand vite.config.js (root) zodat deze de react plugin laad. Deze moet ook sturen naar je hoofdbestand voor react.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
+import react from '@vitejs/plugin-react';
 
-## Security Vulnerabilities
+export default defineConfig({
+  plugins: [
+    laravel({
+      input: ['resources/ts/app.tsx'],
+      refresh: true,
+    }),
+    react(),
+  ],
+});
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Let dus op! De input: [] moet gelijk zijn aan je hoofdbestand (gewoonlijk App.tsx)
 
-## License
+## Stap 5: React Startpunt
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Maak nu een folder aan voor je code. Dit zal waarschijnlijk resources/ts worden. Zorg dat je hierin een entreebestand aanmaakt. Hier een voorbeeld van mijn App.tsx:
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+const App: React.FC = () => {
+    return (
+        <>
+        </>
+    );
+};
+
+const container = document.getElementById("app");
+if (container) {
+    ReactDOM.createRoot(container).render(<App />);
+}
+
+
+
+## Stap 6: Blade template
+
+Je moet nog steeds blades gebruiken om React te kunnen tonen. 
+Maak een view aan in resources/views met een naam die je wilt.
+
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React TypeScript in Laravel</title>
+  @viteReactRefresh
+  @vite('resources/ts/app.tsx')
+
+  @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @else
+            <script src="https://cdn.tailwindcss.com"></script>
+        @endif
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>
+
+## Stap 7: Definieer een route voor de React app
+
+Voeg in routes/web.php een nieuwe route toe naar je view bestand (de blade, niet de tsx!)
+
+Route::get('/', function () {
+    return view('app');
+});
+
+## Opstarten server
+
+Je hebt twee terminals nodig:
+
+Terminal 1:
+Php artisan serve
+
+Terminal 2:
+Npm run dev
+
+Mogelijke errors!
+Soms mis je nog een APP_KEY in je .env bestand. Run dan:
+
+Php artisan key:generate
+
+Het kan ook zijn dat je nog geen migrations hebt gedaan. Dan krijg je een database error. Run het volgende:
+
+Php artisan migrate
+
+## Bouwen voor productie
+
+Als je klaar bent voor een deployment, run je het volgende:
+Npm run build
+
