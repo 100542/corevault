@@ -14,6 +14,6 @@
       "isolatedModules": true,
       "jsx": "react-jsx"
     },
-    "include": ["resources/ts"]
+    "include": ["resources/ts", "resources/ts/components/Index.tsx", "resources/pages/App.tsx"]
   }
   

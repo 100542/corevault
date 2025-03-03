@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Waves from "./components/Waves";
-import Index from './components/Index'
+import Waves from "../ts/components/Waves";
+import Index from '../ts/components/Index'
 
 const App: React.FC = () => {
     return (
