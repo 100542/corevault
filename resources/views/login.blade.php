@@ -48,7 +48,7 @@
                         @endif
 
                         <p class="text-lg hover:cursor-pointer underline underline-offset-8 font-light text-white/90 tracking-widest">
-                            Not registered yet? <a href="{{ route('register') }}">Join now!</a>
+                            Not registered yet? <a href="{{ route('register.page') }}">Join now!</a>
                         </p>
                     </form>
                 </div>
