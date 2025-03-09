@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/crypto-data', [ApiController::class, 'getCryptoData'])->name('crypto.data');
 
 Route::get('/register', function () {
     return view('register');
@@ -14,6 +17,10 @@ Route::get('/register', function () {
 Route::get('/login', function () {
     return view('login');
 })->name('login.page');
+
+Route::get('/market', function () {
+    return view('market');
+})->name('market.page');
 
 Route::get('/', function() {
     return view('index');

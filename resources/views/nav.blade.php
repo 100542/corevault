@@ -19,7 +19,7 @@
 
     <div class="flex space-x-6 text-lg">
         <a href="{{ route('dashboard') }}" class="hover:text-gray-400 transition">Dashboard</a>
-        <a href="{{ route('dashboard') }}" class="hover:text-gray-400 transition">Markets</a>
+        <a href="{{ route('market.page') }}" class="hover:text-gray-400 transition">Markets</a>
         <a href="{{ route('dashboard') }}" class="hover:text-gray-400 transition">Trade</a>
         <a href="{{ route('dashboard') }}" class="hover:text-gray-400 transition">Wallets</a>
         <a href="{{ route('dashboard') }}" class="hover:text-gray-400 transition">History</a>
