@@ -13,58 +13,42 @@
 
 @include('nav')
 
-
-<!-- Dashboard is een placeholder, even snel gemaakt met GPT. dit moet nog vervangen worden, maar dat is voor nu nog niet belangrijk -->
-<body class="bg-gray-900 text-white flex flex-col items-center min-h-screen">
-
-<div class="flex flex-col items-center w-full max-w-5xl px-6 pt-10 space-y-10">
-
-    <div class="w-full bg-gray-800 p-8 border border-white/30 backdrop-blur-md rounded-lg shadow-lg text-center">
-        <h1 class="text-4xl font-bold">Welcome to Corevault</h1>
-        <h2 class="text-2xl font-light mt-4">
-            Hello, <span class="font-semibold text-[#C9C7BA]">{{ $user->username }}</span>! Your crypto journey starts here.
-        </h2>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-
-        <div class="flex flex-col items-center bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
-            <h3 class="text-xl font-semibold">Your Portfolio</h3>
-            <p class="text-3xl font-bold text-green-400 mt-2">$12,345.67</p>
-            <p class="text-sm text-gray-400">Total Balance</p>
+<!--
+Placeholder front-end (verbeterd)
+-->
+<body class="bg-gray-900 text-white flex flex-col justify-center items-center min-h-screen">
+    <main>
+        <div class="bg-gray-800 w-full p-16 flex flex-col gap-4 text-white">
+            <h1 class="text-7xl font-semibold text-center">Welcome back, <span class="text-yellow-300">{{ $user->username }}</span>!</h1>
+            <h2 class="text-3xl font-light text-center">What would you like to do today?</h2>
         </div>
-
-        <div class="flex flex-col items-center bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
-            <h3 class="text-xl font-semibold">Market Overview</h3>
-            <div class="mt-4 space-y-2 text-center">
-                <p><span class="font-semibold">Bitcoin:</span> $43,250 <span class="text-green-400">+2.5%</span></p>
-                <p><span class="font-semibold">Ethereum:</span> $3,220 <span class="text-red-400">-1.2%</span></p>
-                <p><span class="font-semibold">Solana:</span> $125.50 <span class="text-green-400">+4.1%</span></p>
+        <div class="flex flex-row mt-16 justify-center gap-16 items-center">
+            <div class="bg-gray-800 gap-6 text-white flex w-[27dvw] h-52 flex-col p-4 justify-center rounded-lg shadow-md">
+                <h2 class="font-bold text-3xl text-center">Your Portfolio</h2>
+                <div class="bg-gray-700 flex flex-col justify-center items-center p-4 rounded-lg shadow-md">
+                    <h2 class="text-green-300 font-bold text-3xl">$26,356.24</h2>
+                    <a href="{{ route('dashboard') }}" class="font-bold text-xl underline">View investments</a>
+                </div>
+            </div>
+            <div class="bg-gray-800 text-white flex w-[27dvw] h-52 flex-col justify-center items-center rounded-lg shadow-md">
+                <div class="bg-gray-800 gap-6 text-white flex w-[27dvw] h-52 flex-col p-4 justify-center rounded-lg shadow-md">
+                    <h2 class="font-bold text-3xl text-center">Inbox</h2>
+                    <div class="bg-gray-700 flex flex-col justify-center items-center p-4 rounded-lg shadow-md">
+                        <h2 class="font-bold text-3xl">You are all up-to-date!</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-800 text-white flex w-[27dvw] h-52 flex-col justify-center items-center rounded-lg shadow-md">
+                <div class="bg-gray-800 gap-6 text-white flex w-[27dvw] h-52 flex-col p-4 justify-center rounded-lg shadow-md">
+                    <h2 class="font-bold text-3xl text-center">Recent transactions</h2>
+                    <div class="bg-gray-700 flex flex-col justify-center gap-4 items-center p-4 rounded-lg shadow-md overflow-y-scroll">
+                        <h2 class="font-bold text-green-300 text-3xl">Received:<span class="text-white"> $567.00 from Test1</span></h2>
+                        <h2 class="font-bold text-green-300 text-3xl">Received:<span class="text-white"> $567.00 from Test1</span></h2>
+                        <h2 class="font-bold text-red-300 text-3xl">Sent:<span class="text-white"> $567.00 to Test1</span></h2>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="flex flex-col items-center bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
-            <h3 class="text-xl font-semibold">Recent Transactions</h3>
-            <ul class="mt-4 space-y-2 text-sm text-center">
-                <li>✅ Bought 0.05 BTC - <span class="text-green-400">+$2,160</span></li>
-                <li>❌ Sold 2.5 ETH - <span class="text-red-400">-$8,050</span></li>
-                <li>✅ Deposited $500 - <span class="text-green-400">+$500</span></li>
-            </ul>
-        </div>
-
-    </div>
-
-    <div class="flex flex-wrap justify-center gap-4 w-full">
-        <a href="#" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-700 text-lg">Trade Now</a>
-        <a href="#" class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700 text-lg">Deposit</a>
-        <a href="#" class="px-6 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-700 text-lg">Withdraw</a>
-    </div>
-
-    <a href="{{ route('logout') }}" class="px-6 py-3 bg-red-500 text-white rounded-md hover:bg-red-700 text-lg">
-        Logout
-    </a>
-
-</div>
-
+    </main>
 </body>
 </html>
