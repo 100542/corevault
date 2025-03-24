@@ -24,7 +24,7 @@
 'text-yellow-300' : '' }}">Markets</a>
         <a href="{{ route('dashboard') }} {{ request()->routeIs('dashboard') ?
 'text-yellow-300' : '' }}" class="hover:text-gray-400 transition">Trade</a>
-        <a href="{{ route('dashboard') }} {{ request()->routeIs('dashboard') ?
+        <a href="{{ route('wallets.page') }} {{ request()->routeIs('wallets.page') ?
 'text-yellow-300' : '' }}" class="hover:text-gray-400 transition">Wallets</a>
         <a href="{{ route('dashboard') }} {{ request()->routeIs('dashboard') ?
 'text-yellow-300' : '' }}" class="hover:text-gray-400 transition">History</a>

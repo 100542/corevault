@@ -26,7 +26,9 @@ Placeholder front-end (verbeterd)
             <div class="bg-gray-800 gap-6 text-white flex w-[27dvw] h-52 flex-col p-4 justify-center rounded-lg shadow-md">
                 <h2 class="font-bold text-3xl text-center">Your Portfolio</h2>
                 <div class="bg-gray-700 flex flex-col justify-center items-center p-4 rounded-lg shadow-md">
-                    <h2 class="text-green-300 font-bold text-3xl">$26,356.24</h2>
+                    @foreach($wallets as $wallet)
+                        <h2>{{ number_format($wallet->pivot->balance, 2) }}</h2>
+                    @endforeach
                     <a href="{{ route('dashboard') }}" class="font-bold text-xl underline">View investments</a>
                 </div>
             </div>
