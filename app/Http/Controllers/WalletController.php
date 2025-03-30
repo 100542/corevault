@@ -8,19 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class WalletController extends Controller
 {
-
     public function index()
     {
         $user = Auth::user();
-
-        if ($user->wallets->isEmpty()) {
-            $wallet = Wallet::create([
-                'name' => 'Default Wallet',
-                'address' => $this->generateWalletAddress(),
-            ]);
-
-            $user->wallets()->attach($wallet->id, ['balance' => 0.0]);
-        }
 
         $wallets = $user->wallets;
 
@@ -38,6 +28,7 @@ class WalletController extends Controller
         $wallet = Wallet::create([
             'name' => $request->name,
             'address' => $this->generateWalletAddress(),
+            'type' => 'crypto',
         ]);
 
         $user->wallets()->attach($wallet->id, ['balance' => 0.0]);

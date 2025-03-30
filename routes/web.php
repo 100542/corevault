@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
-use App\Http\Controllers\WalletController;
+use App\Http\Controllers\WalletController;use App\Http\Controllers\DashboardController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
@@ -34,6 +34,8 @@ Route::get('/', function() {
 Route::get('/dashboard', function () {
     return view('dashboard', ['user' => Auth::user()]);
 })->middleware('auth')->name('dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'wallets'])->name('dashboard')->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/wallets', [WalletController::class, 'index'])->name('wallets.page');

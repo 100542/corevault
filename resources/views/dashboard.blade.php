@@ -25,13 +25,20 @@ Placeholder front-end (verbeterd)
         <div class="flex flex-row mt-16 justify-center gap-16 items-center">
             <div class="bg-gray-800 gap-6 text-white flex w-[27dvw] h-52 flex-col p-4 justify-center rounded-lg shadow-md">
                 <h2 class="font-bold text-3xl text-center">Your Portfolio</h2>
-                <div class="bg-gray-700 flex flex-col justify-center items-center p-4 rounded-lg shadow-md">
+
+                <div class="bg-gray-700 flex flex-col justify-start items-center p-4 rounded-lg shadow-md w-full h-32 overflow-y-auto">
                     @foreach($wallets as $wallet)
-                        <h2>{{ number_format($wallet->pivot->balance, 2) }}</h2>
+                        <div class="bg-gray-800 p-3 rounded-lg shadow w-full mb-2">
+                            <h2 class="text-lg font-bold">{{ $wallet->name }}</h2>
+                            <p class="text-gray-400">{{ ucfirst($wallet->type) }} Wallet</p>
+                            <h2 class="text-xl font-semibold">
+                                $ {{ number_format($wallet->pivot->balance, 2) }}
+                            </h2>
+                        </div>
                     @endforeach
-                    <a href="{{ route('dashboard') }}" class="font-bold text-xl underline">View investments</a>
                 </div>
             </div>
+
             <div class="bg-gray-800 text-white flex w-[27dvw] h-52 flex-col justify-center items-center rounded-lg shadow-md">
                 <div class="bg-gray-800 gap-6 text-white flex w-[27dvw] h-52 flex-col p-4 justify-center rounded-lg shadow-md">
                     <h2 class="font-bold text-3xl text-center">Inbox</h2>

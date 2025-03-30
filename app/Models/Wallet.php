@@ -10,7 +10,7 @@ class Wallet extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'address'];
+    protected $fillable = ['name', 'address',  'type'];
 
     public function users(): BelongsToMany
     {
