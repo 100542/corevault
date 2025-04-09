@@ -16,16 +16,16 @@ Route::get('/register', function () {
 })->name('register.page');
 
 Route::get('/wallets', function() {
-    return view('wallets');
-})->name('wallets.page');
+    return view('wallets', ['user' => Auth::user()]);
+})->middleware('auth')->name('wallets.page');
 
 Route::get('/login', function () {
     return view('login');
 })->name('login.page');
 
 Route::get('/market', function () {
-    return view('market');
-})->name('market.page');
+    return view('market', ['user' => Auth::user()]);
+})->middleware('auth')->name('market.page');
 
 Route::get('/', function() {
     return view('index');

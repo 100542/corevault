@@ -49,7 +49,7 @@
                 <input type="text" id="wallet-name" name="name"
                        class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none text-white"
                        placeholder="Enter wallet name" required>
-                <select class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none mt-4 text-white">
+                <select name="type" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none mt-4 text-white">
                     <option>BTC</option>
                     <option>ETH</option>
                     <option>SOL</option>

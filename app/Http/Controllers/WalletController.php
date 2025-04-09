@@ -14,7 +14,7 @@ class WalletController extends Controller
 
         $wallets = $user->wallets;
 
-        return view('wallets', compact('wallets'));
+        return view('wallets', compact('wallets', ));
     }
 
     public function create(Request $request)
@@ -28,7 +28,7 @@ class WalletController extends Controller
         $wallet = Wallet::create([
             'name' => $request->name,
             'address' => $this->generateWalletAddress(),
-            'type' => 'crypto',
+            'type' => $request->type,
         ]);
 
         $user->wallets()->attach($wallet->id, ['balance' => 0.0]);

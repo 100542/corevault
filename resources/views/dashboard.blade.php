@@ -11,53 +11,127 @@
     @endif
 </head>
 
+<body class="bg-[#040604] text-white min-h-screen font-sans">
 @include('nav')
 
-<!--
-Placeholder front-end (verbeterd)
--->
-<body class="bg-gray-900 text-white flex flex-col justify-center items-center min-h-screen">
-    <main>
-        <div class="bg-gray-800 w-full p-16 flex flex-col gap-4 text-white">
-            <h1 class="text-7xl font-semibold text-center">Welcome back, <span class="text-yellow-300">{{ $user->username }}</span>!</h1>
-            <h2 class="text-3xl font-light text-center">What would you like to do today?</h2>
-        </div>
-        <div class="flex flex-row mt-16 justify-center gap-16 items-center">
-            <div class="bg-gray-800 gap-6 text-white flex w-[27dvw] h-52 flex-col p-4 justify-center rounded-lg shadow-md">
-                <h2 class="font-bold text-3xl text-center">Your Portfolio</h2>
+<main class="p-10">
+    <div class="mb-12">
+        <h1 class="text-4xl text-[#C4FFCE] font-bold">Dashboard Overview</h1>
+        <p class="text-gray-400 mt-2">Welcome back, <span class="text-[#C4FFCE] font-semibold">{{ $user->username }}</span>!</p>
+    </div>
 
-                <div class="bg-gray-700 flex flex-col justify-start items-center p-4 rounded-lg shadow-md w-full h-32 overflow-y-auto">
-                    @foreach($wallets as $wallet)
-                        <div class="bg-gray-800 p-3 rounded-lg shadow w-full mb-2">
-                            <h2 class="text-lg font-bold">{{ $wallet->name }}</h2>
-                            <p class="text-gray-400">{{ ucfirst($wallet->type) }} Wallet</p>
-                            <h2 class="text-xl font-semibold">
-                                $ {{ number_format($wallet->pivot->balance, 2) }}
-                            </h2>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 mb-12">
+        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
+            <p class="text-sm text-[#040604]">Wallet Overview</p>
+            @foreach ($wallets as $wallet)
+            <h2 class="text-2xl text-[#040604] font-bold mt-2">{{ $wallet->name }}: <span class="font-black">{{ $wallet->type }}</span></h2>
+            @endforeach
+        </div>
+        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
+            <p class="text-sm text-[#040604]">Current Highest Return Rate</p>
+            <h2 id="highestReturn" class="text-[#040604] font-black text-lg my-4">Loading...</h2>
+        </div>
+        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
+            <p class="text-sm text-[#040604]">Current Lowest Return Rate</p>
+            <h2 id="lowestReturn" class="text-[#040604] font-black text-lg my-4">Loading...</h2>
+        </div>
+        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
+            <p class="text-sm text-[#040604]">Time And Date (European Format)</p>
+            <h2 id="timeTracker" class="text-[#040604] text-3xl font-black mt-2">Loading...</h2>
+        </div>
+    </div>
 
-            <div class="bg-gray-800 text-white flex w-[27dvw] h-52 flex-col justify-center items-center rounded-lg shadow-md">
-                <div class="bg-gray-800 gap-6 text-white flex w-[27dvw] h-52 flex-col p-4 justify-center rounded-lg shadow-md">
-                    <h2 class="font-bold text-3xl text-center">Inbox</h2>
-                    <div class="bg-gray-700 flex flex-col justify-center items-center p-4 rounded-lg shadow-md">
-                        <h2 class="font-bold text-3xl">You are all up-to-date!</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
+            <p class="text-[#040604] mb-1">Your Total Account Value</p>
+            <h2 class="text-4xl text-[#040604] font-black">${{ number_format($totalBalance, 2) }}</h2>
+        </div>
+        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
+            <p class="text-[#040604] mb-1">Most Relevant Connection</p>
+            <h2 class="text-2xl text-[#040604] font-black">Testuser</h2>
+            <p class="text-[#040604] text-sm mt-1">9 gazillion dollars sent (Nog niet ontwikkeld)</p>
+        </div>
+        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
+            <p class="text-[#040604] mb-1">Most Recent Transfer</p>
+            <h2 class="text-2xl text-[#040604] font-black">$127,456.49</h2>
+            <p class="text-[#040604] text-sm mt-1">to Testuser</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
+            <h2 class="text-2xl text-[#040604] font-bold mb-4">Your Portfolio</h2>
+            <div class="space-y-4 max-h-72 overflow-y-auto">
+                @foreach($wallets as $wallet)
+                    <div class="bg-[#040604] p-4 rounded-xl hover:bg-[#475569] transition-all">
+                        <h3 class="text-lg text-[#C4FFCE] font-semibold">{{ $wallet->name }}</h3>
+                        <p class="text-sm text-[#8DB295]">{{ ucfirst($wallet->type) }} Wallet</p>
+                        <p class="text-white/80 text-lg font-medium mt-1">
+                            Balance: ${{ number_format($wallet->pivot->balance, 2) }}
+                        </p>
                     </div>
-                </div>
+                @endforeach
             </div>
-            <div class="bg-gray-800 text-white flex w-[27dvw] h-52 flex-col justify-center items-center rounded-lg shadow-md">
-                <div class="bg-gray-800 gap-6 text-white flex w-[27dvw] h-52 flex-col p-4 justify-center rounded-lg shadow-md">
-                    <h2 class="font-bold text-3xl text-center">Recent transactions</h2>
-                    <div class="bg-gray-700 flex flex-col justify-center gap-4 items-center p-4 rounded-lg shadow-md overflow-y-scroll">
-                        <h2 class="font-bold text-green-300 text-3xl">Received:<span class="text-white"> $567.00 from Test1</span></h2>
-                        <h2 class="font-bold text-green-300 text-3xl">Received:<span class="text-white"> $567.00 from Test1</span></h2>
-                        <h2 class="font-bold text-red-300 text-3xl">Sent:<span class="text-white"> $567.00 to Test1</span></h2>
-                    </div>
+        </div>
+
+        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
+            <h2 class="text-2xl text-[#040604] font-bold mb-4">Inbox</h2>
+            <div class="bg-[#040604] p-4 rounded-xl text-center">
+                <p class="text-lg text-[#C4FFCE] font-semibold">No new messages. (Nog niet ontwikkeld, oeps)</p>
+            </div>
+        </div>
+
+        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
+            <h2 class="text-2xl text-[#040604] font-bold mb-4">Recent Transactions</h2>
+            <div class="space-y-4 max-h-72 overflow-y-auto">
+                <div class="bg-[#040604] p-4 rounded-xl text-center">
+                    <p class="text-lg text-[#C4FFCE] font-semibold">No recent transactions. (Ook nog niet ontwikkeld)</p>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+    <div class="absolute bottom-0 -z-10 opacity-10 overflow-x-hidden flex flex-row justify-center gap-4 max-w-[97dvw] items-end">
+        <div class="h-[320px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[600px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[450px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[510px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[390px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[470px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[520px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[360px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[590px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[300px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[580px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[460px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[500px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[340px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[480px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[530px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[310px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[560px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[440px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[490px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[370px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[455px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[540px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[350px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[570px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[330px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[585px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[430px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[510px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[390px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[460px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[520px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[315px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[595px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[445px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[505px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[375px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[455px] w-14 bg-[#8DB295]"></div>
+    </div>
+</main>
+<script src="/js/dashboardMarket.js"></script>
+<script src="/js/timeTracker.js"></script>
 </body>
 </html>
