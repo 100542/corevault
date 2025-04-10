@@ -14,10 +14,10 @@
 
 @include('nav')
 
-<body class="bg-gray-900 text-white flex justify-center items-center min-h-screen">
-<main class="w-full max-w-3xl p-6">
-    <div class="bg-gray-800 shadow-lg rounded-lg p-6">
-        <h2 class="text-2xl font-semibold text-center mb-6">Your Wallets</h2>
+<body class="text-white flex justify-center items-center min-h-screen">
+<main class="w-full p-6">
+    <div class="mb-10 shadow-lg rounded-lg mt-10">
+        <h2 class="text-4xl font-semibold text-[#C4FFCE] text-left mb-2">Your Personal Wallet Dashboard.</h2>
 
         @if(session('success'))
             <div class="bg-green-500 text-white p-3 rounded mb-4 text-center">
@@ -25,31 +25,15 @@
             </div>
         @endif
 
-        @if($wallets->isEmpty())
-            <p class="text-gray-400 text-center">You don't have any wallets yet. Create one below.</p>
-        @else
-            <ul class="space-y-4 mb-6">
-                @foreach ($wallets as $wallet)
-                    <li class="bg-gray-700 p-4 rounded-lg shadow-md">
-                        <strong class="block text-lg">{{ $wallet->name }}</strong>
-                        <span class="text-gray-400 text-sm">Address:</span>
-                        <code class="block text-gray-300">{{ $wallet->address }}</code>
-                        <span class="text-gray-400 text-sm">Balance:</span>
-                        <strong class="text-white">{{ number_format($wallet->pivot->balance, 2) }}</strong>
-                    </li>
-                @endforeach
-            </ul>
-        @endif
-
-        <h3 class="text-xl font-semibold mb-4 text-center">Create a New Wallet</h3>
-        <form action="{{ route('wallets.create') }}" method="POST" class="space-y-4">
+        <h3 class="text-md text-gray-400 mb-4 text-left">Welcome, <span class="text-[#C4FFCE]">{{ $user->username }}</span></h3>
+        <form action="{{ route('wallets.create') }}" method="POST" class="space-y-4  bg-[#8DB295] p-4 rounded-md shadow-md">
             @csrf
             <div>
-                <label for="wallet-name" class="block text-gray-300 mb-1">Wallet Name</label>
+                <label for="wallet-name" class="block text-[#040604] mb-1">Wallet Name</label>
                 <input type="text" id="wallet-name" name="name"
-                       class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none text-white"
+                       class="w-full p-3 rounded-lg bg-[#040604] focus:ring-2 focus:ring-[#C4FFCE] focus:outline-none text-[#C4FFCE]"
                        placeholder="Enter wallet name" required>
-                <select name="type" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none mt-4 text-white">
+                <select name="type" class="w-full p-3 rounded-lg bg-[#040604] focus:ring-2 focus:ring-[#C4FFCE] focus:outline-none text-[#C4FFCE] mt-4">
                     <option>BTC</option>
                     <option>ETH</option>
                     <option>SOL</option>
@@ -57,10 +41,66 @@
                     <option>ADA</option>
                 </select>
             </div>
-            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition">
+            <button type="submit" class="w-full bg-[#C4FFCE] text-[#040604] font-semibold py-3 rounded-lg transition">
                 Create Wallet
             </button>
         </form>
+    </div>
+
+    @if($wallets->isEmpty())
+        <p class="text-[#C4FFCE] text-center">You don't have any wallets yet. Create one in the form.</p>
+    @else
+        <ul class="space-y-4 mb-6 grid grid-cols-5 gap-16 ">
+            @foreach ($wallets as $wallet)
+                <li class="bg-[#8DB295] min-w-fit p-4 rounded-lg shadow-md">
+                    <strong class="block text-[#040604] font-extrabold text-lg">{{ $wallet->name }}</strong>
+                    <span class="text-[#040604] text-sm">Address:</span>
+                    <code class="block text-gray-900">{{ $wallet->address }}</code>
+                    <span class="text-[#040604] text-sm">Balance:</span>
+                    <strong class="text-[#040604]">{{ number_format($wallet->pivot->balance, 2) }}</strong>
+                </li>
+            @endforeach
+        </ul>
+    @endif
+    <div class="absolute bottom-0 -z-10 opacity-10 overflow-x-hidden flex flex-row justify-center gap-4 max-w-[97dvw] items-end">
+        <div class="h-[320px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[600px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[450px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[510px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[390px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[470px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[520px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[360px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[590px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[300px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[580px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[460px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[500px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[340px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[480px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[530px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[310px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[560px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[440px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[490px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[370px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[455px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[540px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[350px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[570px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[330px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[585px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[430px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[510px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[390px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[460px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[520px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[315px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[595px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[445px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[505px] w-14 bg-[#8DB295]"></div>
+        <div class="h-[375px] w-14 bg-[#7CD789]"></div>
+        <div class="h-[455px] w-14 bg-[#8DB295]"></div>
     </div>
 </main>
 </body>

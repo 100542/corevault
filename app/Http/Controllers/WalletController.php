@@ -14,7 +14,7 @@ class WalletController extends Controller
 
         $wallets = $user->wallets;
 
-        return view('wallets', compact('wallets', ));
+        return view('wallets', compact('wallets', 'user'));
     }
 
     public function create(Request $request)
