@@ -20,22 +20,22 @@
     @if (Auth::check())
     <div class="flex gap-16 tracking-wide text-lg">
         <a href="{{ route('dashboard') }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('dashboard') ?
-'text-yellow-300 border-yellow-300' : '' }}">Dashboard</a>
+'bg-[#C4FFCE] text-black' : '' }}">Dashboard</a>
         <a href="{{ route('market.page') }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('market.page') ?
-'text-yellow-300 border-yellow-300' : '' }}">Markets</a>
+'bg-[#C4FFCE] text-black' : '' }}">Markets</a>
         <a href="{{ route('dashboard') }} {{ request()->routeIs('dashboard') ?
-'text-yellow-300 border-yellow-300' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Trade</a>
+'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Trade</a>
         <a href="{{ route('wallets.page') }} {{ request()->routeIs('wallets.page') ?
-'text-yellow-300 border-yellow-300' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Wallets</a>
+'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Wallets</a>
         <a href="{{ route('dashboard') }} {{ request()->routeIs('dashboard') ?
-'text-yellow-300 border-yellow-300' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">History</a>
+'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">History</a>
     </div>
     @else
         <div class="flex gap-16 tracking-wide text-lg">
             <a href="{{ route('index.page') }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('dashboard') ?
-'text-yellow-300 border-yellow-300' : '' }}">Home</a>
+'bg-[#C4FFCE] text-[#040604]' : '' }}">Home</a>
             <a href="{{ route('login') }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('dashboard') ?
-'text-yellow-300 border-yellow-300' : '' }}">Login</a>
+'bg-[#C4FFCE] text-[#040604]' : '' }}">Login</a>
         </div>
     @endif
 

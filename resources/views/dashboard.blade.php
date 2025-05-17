@@ -23,9 +23,11 @@
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 mb-12">
         <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
             <p class="text-sm text-[#040604]">Wallet Overview</p>
+            <div class="overflow-y-auto max-h-32">
             @foreach ($wallets as $wallet)
             <h2 class="text-2xl text-[#040604] font-bold mt-2">{{ $wallet->name }}: <span class="font-black">{{ $wallet->type }}</span></h2>
             @endforeach
+            </div>
         </div>
         <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
             <p class="text-sm text-[#040604]">Current Highest Return Rate</p>
