@@ -13,7 +13,6 @@
 </head>
 
 @include('nav')
-
 <body class="text-white flex justify-center items-center min-h-screen">
 <main class="w-full p-6">
     <div class="mb-10 shadow-lg rounded-lg mt-10">
@@ -52,12 +51,13 @@
     @else
         <ul class="space-y-4 mb-6 grid grid-cols-5 gap-16 ">
             @foreach ($wallets as $wallet)
-                <li class="bg-[#8DB295] min-w-fit p-4 rounded-lg shadow-md">
+                <li class="bg-[#8DB295] min-w-fit p-4 flex flex-col gap-2 rounded-lg shadow-md">
                     <strong class="block text-[#040604] font-extrabold text-lg">{{ $wallet->name }}</strong>
                     <span class="text-[#040604] text-sm">Address:</span>
                     <code class="block text-gray-900">{{ $wallet->address }}</code>
                     <span class="text-[#040604] text-sm">Balance:</span>
                     <strong class="text-[#040604]">{{ number_format($wallet->pivot->balance, 2) }}</strong>
+                    <button class="text-[#C4FFCE] bg-[#040604] p-2 text-sm rounded-lg">Deposit</button>
                 </li>
             @endforeach
         </ul>

@@ -23,6 +23,10 @@ Route::get('/login', function () {
     return view('login');
 })->name('login.page');
 
+Route::get('trade', function () {
+    return view('trade');
+})->name('trade.page');
+
 Route::get('/market', function () {
     return view('market', ['user' => Auth::user()]);
 })->middleware('auth')->name('market.page');

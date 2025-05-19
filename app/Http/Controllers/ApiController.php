@@ -14,7 +14,7 @@ class ApiController extends Controller
 
         $cryptoData = [];
         foreach ($symbols as $symbol) {
-            $response = Http::get("https://api.binance.com/api/v3/klines", [
+            $response = Http::withoutVerifying()->get("https://api.binance.com/api/v3/klines", [ // in production, withoutVerifying weg. Dat is slecht.
                 'symbol'   => $symbol,
                 'interval' => $interval,
                 'limit'    => 1

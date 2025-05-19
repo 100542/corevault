@@ -23,7 +23,7 @@
 'bg-[#C4FFCE] text-black' : '' }}">Dashboard</a>
         <a href="{{ route('market.page') }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('market.page') ?
 'bg-[#C4FFCE] text-black' : '' }}">Markets</a>
-        <a href="{{ route('dashboard') }} {{ request()->routeIs('dashboard') ?
+        <a href="{{ route('trade.page') }} {{ request()->routeIs('trade') ?
 'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Trade</a>
         <a href="{{ route('wallets.page') }} {{ request()->routeIs('wallets.page') ?
 'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Wallets</a>
