@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Models\Wallet;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,50 @@ class WalletController extends Controller
         $user->wallets()->attach($wallet->id, ['balance' => 0.0]);
 
         return redirect()->route('wallets.page')->with('success', 'Wallet created successfully!');
+    }
+
+    public function deposit(Request $request)
+    {
+        $request->validate([
+            'wallet_id' => 'required|exists:wallets,id',
+            'amount' => 'required|numeric|min:0.01',
+        ]);
+
+        $user = Auth::user();
+        $walletId = $request->wallet_id;
+        $usdAmount = $request->amount;
+
+        $wallet = $user->wallets()->where('wallet_id', $walletId)->first();
+
+        if (!$wallet) {
+            return redirect()->back()->with('error', 'Unauthorized access to this wallet.');
+        }
+
+        $walletType = strtoupper($wallet->type);
+        $symbol = $walletType . 'USDT';
+
+        $response = Http::withoutVerifying()->get("https://api.binance.com/api/v3/klines", [
+            'symbol' => $symbol,
+            'interval' => '1h',
+            'limit' => 1
+        ]);
+
+        if (!$response->successful()) {
+            return redirect()->back()->with('error', 'Failed to fetch exchange rate.');
+        }
+
+        $data = $response->json();
+        $rate = (float) $data[0][4];
+
+        $cryptoAmount = $usdAmount / $rate;
+
+        $currentBalance = $wallet->pivot->balance;
+
+        $user->wallets()->updateExistingPivot($walletId, [
+            'balance' => $currentBalance + $cryptoAmount
+        ]);
+
+        return redirect()->route('wallets.page')->with('success', "Deposit successful! Converted {$usdAmount} USD to {$cryptoAmount} {$walletType}.");
     }
 
     private function generateWalletAddress()

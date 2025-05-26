@@ -44,4 +44,5 @@ Route::get('/dashboard', [DashboardController::class, 'wallets'])->name('dashboa
 Route::middleware(['auth'])->group(function () {
     Route::get('/wallets', [WalletController::class, 'index'])->name('wallets.page');
     Route::post('/wallets/create', [WalletController::class, 'create'])->name('wallets.create');
+    Route::post('/wallets/deposit', [WalletController::class, 'deposit'])->name('wallets.deposit');
 });

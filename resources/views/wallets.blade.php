@@ -56,8 +56,13 @@
                     <span class="text-[#040604] text-sm">Address:</span>
                     <code class="block text-gray-900">{{ $wallet->address }}</code>
                     <span class="text-[#040604] text-sm">Balance:</span>
-                    <strong class="text-[#040604]">{{ number_format($wallet->pivot->balance, 2) }}</strong>
-                    <button class="text-[#C4FFCE] bg-[#040604] p-2 text-sm rounded-lg">Deposit</button>
+                    <strong class="text-[#040604]">{{ number_format($wallet->pivot->balance, 6) }} {{ $wallet->type }}</strong>
+                    <form action="{{ route('wallets.deposit') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="wallet_id" value="{{ $wallet->id }}">
+                        <input type="number" name="amount" class="p-2 text-sm rounded-lg text-[#C4FFCE] bg-[#040604]" placeholder="Amount in $...">
+                        <button class="text-[#C4FFCE] bg-[#040604] p-2 text-sm rounded-lg">Deposit</button>
+                    </form>
                 </li>
             @endforeach
         </ul>
