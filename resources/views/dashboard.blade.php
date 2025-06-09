@@ -69,7 +69,7 @@
                         <h3 class="text-lg text-[#C4FFCE] font-semibold">{{ $wallet->name }}</h3>
                         <p class="text-sm text-[#8DB295]">{{ ucfirst($wallet->type) }} Wallet</p>
                         <p class="text-white/80 text-lg font-medium mt-1">
-                            Balance: ${{ number_format($wallet->pivot->balance, 6) }}
+                            Balance: {{ number_format($wallet->pivot->balance, 6)}} {{ ucfirst($wallet->type) }}
                         </p>
                     </div>
                 @endforeach

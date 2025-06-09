@@ -51,7 +51,10 @@
         <div class="absolute right-0 rounded-md p-4 min-w-96 border-[#C4FFCE] border-2 shadow-lg hidden group-hover:flex flex-col ">
             <p class="text-2xl font-black text-[#C4FFCE]">Hello, <span class="text-2xl text-[#C4FFCE]">{{ Auth::user() ->username }}.</span></p>
             <a href="{{ route('dashboard') }}" class="mt-4 text-[#C4FFCE]">Manage profile</a>
-            <a href="{{ route('logout') }}" class="text-[#C4FFCE]">Logout</a>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="text-[#C4FFCE]">Logout</button>
+            </form>
         </div>@endauth
     </div>
 </nav>
