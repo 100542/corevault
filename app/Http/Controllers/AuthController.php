@@ -8,8 +8,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
+/**
+ *
+ */
 class AuthController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|object
+     */
     public function login(Request $request)
     {
         $request->validate([
@@ -27,6 +34,10 @@ class AuthController extends Controller
         return redirect('/dashboard');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|object
+     */
     public function register(Request $request)
     {
         $request->validate([
@@ -51,6 +62,9 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Account Created! Welcome to Corevault!');
     }
 
+    /**
+     * @return \Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|object
+     */
     public function logout()
     {
         Auth::logout();

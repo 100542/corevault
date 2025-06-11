@@ -5,8 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\JsonResponse;
 
+/**
+ *
+ */
 class ApiController extends Controller
 {
+    /**
+     * @return JsonResponse
+     * @throws \Illuminate\Http\Client\ConnectionException
+     */
     public function getCryptoData(): JsonResponse
     {
         $symbols = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'XRPUSDT', 'ADAUSDT'];
@@ -40,4 +47,22 @@ class ApiController extends Controller
 
         return response()->json($cryptoData);
     }
+
+    public function convertUsdToCrypto($usdAmount, $crypto)
+    {
+        $symbol = strtoupper($crypto) . 'USDT';
+
+        $response = Http::withoutVerifying()->get('https://api.binance.com/api/v3/ticker/price', [
+            'symbol' => $symbol
+        ]);
+
+        if (!$response->successful()) {
+            throw new \Exception("Failed to fetch conversion rate for $symbol.");
+        }
+
+        $price = $response->json()['price'];
+
+        return $usdAmount / (float) $price;
+    }
+
 }

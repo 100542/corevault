@@ -7,8 +7,14 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Wallet;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ *
+ */
 class WalletController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View|object
+     */
     public function index()
     {
         $user = Auth::user();
@@ -18,6 +24,10 @@ class WalletController extends Controller
         return view('wallets', compact('wallets', 'user'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function create(Request $request)
     {
         $request->validate([
@@ -37,6 +47,11 @@ class WalletController extends Controller
         return redirect()->route('wallets.page')->with('success', 'Wallet created successfully!');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Http\Client\ConnectionException
+     */
     public function deposit(Request $request)
     {
         $request->validate([
@@ -81,6 +96,9 @@ class WalletController extends Controller
         return redirect()->route('wallets.page')->with('success', "Deposit successful! Converted {$usdAmount} USD to {$cryptoAmount} {$walletType}.");
     }
 
+    /**
+     * @return string
+     */
     private function generateWalletAddress()
     {
         return '0x' . substr(md5(uniqid(mt_rand(), true)), 0, 32);

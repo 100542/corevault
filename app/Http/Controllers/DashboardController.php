@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ *
+ */
 class DashboardController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View|object
+     */
     public function wallets()
     {
         $user = auth()->user();
@@ -17,6 +23,10 @@ class DashboardController extends Controller
         return view('dashboard', compact('user', 'wallets', 'totalBalance'));
     }
 
+    /**
+     * @return float|int
+     * @throws \Illuminate\Http\Client\ConnectionException
+     */
     public function getTotalBalance()
     {
         $user = Auth::user();

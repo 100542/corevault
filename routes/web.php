@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/wallets/deposit', [WalletController::class, 'deposit'])->name('wallets.deposit');
     Route::get('/trade', [TradeController::class, 'index'])->name('trade.page');
     Route::post('/trade/send', [TradeController::class, 'sendMessage'])->middleware('auth')->name('trade.send');
+    Route::post('/trade/wiretransfer', [TradeController::class, 'wireTransfer'])->middleware('auth')->name('trade.wiretransfer');
     Route::get('/market', function () {
         return view('market', ['user' => Auth::user()]);
     })->name('market.page');
