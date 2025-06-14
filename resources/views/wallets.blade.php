@@ -16,7 +16,7 @@
 <body class="text-white flex justify-center items-center min-h-screen">
 <main class="w-full p-6">
     <div class="mb-10 shadow-lg rounded-lg mt-10">
-        <h2 class="text-4xl font-semibold text-[#C4FFCE] text-left mb-2">Your Personal Wallet Dashboard.</h2>
+        <h2 class="text-4xl text-[#C4FFCE] text-left mb-2 font-bold">Your Personal Wallet Dashboard.</h2>
 
         @if(session('success'))
             <div class="bg-green-500 text-white p-3 rounded mb-4 text-center">

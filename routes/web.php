@@ -5,6 +5,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TradeController;
+use App\Http\Controllers\InsightsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,6 +30,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'wallets'])->name('dashboard');
     Route::get('/wallets', [WalletController::class, 'index'])->name('wallets.page');
+    Route::get('/insights', [InsightsController::class, 'index'])->name('insights.page');
     Route::post('/wallets/create', [WalletController::class, 'create'])->name('wallets.create');
     Route::post('/wallets/deposit', [WalletController::class, 'deposit'])->name('wallets.deposit');
     Route::get('/trade', [TradeController::class, 'index'])->name('trade.page');

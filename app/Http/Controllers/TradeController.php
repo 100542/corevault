@@ -82,10 +82,6 @@ class TradeController extends Controller
         $targetUser = User::where('username', $request->targetname)->firstOrFail();
         $receiverWallet = $targetUser->wallets()->where('address', $request->waddress)->first();
 
-        if (!$receiverWallet) {
-            return back()->withErrors(['waddress' => 'That wallet does not belong to the selected user.']);
-        }
-
         $usdAmount = $request->amount;
 
         $api = new ApiController();

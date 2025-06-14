@@ -27,8 +27,8 @@
 'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Trade</a>
         <a href="{{ route('wallets.page') }} {{ request()->routeIs('wallets.page') ?
 'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Wallets</a>
-        <a href="{{ route('dashboard') }} {{ request()->routeIs('dashboard') ?
-'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">History</a>
+        <a href="{{ route('insights.page') }} {{ request()->routeIs('insights.page') ?
+'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Insights</a>
     </div>
     @else
         <div class="flex gap-16 tracking-wide text-lg">
