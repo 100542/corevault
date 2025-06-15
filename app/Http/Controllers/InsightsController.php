@@ -8,6 +8,15 @@ class InsightsController extends Controller
     {
         $user = auth()->user();
 
-        return view('insights', compact('user'));
+        $wallets = $user->wallets;
+        $returnBalance = $user->wallets()->withPivot('balance')->get();
+        $peakBalanceType = $returnBalance->max(function ($wallet) {
+            return $wallet->type;
+        });
+        $peakBalance = $returnBalance->max(function ($wallet) {
+            return $wallet->pivot->balance;
+        });
+
+        return view('insights', compact('user', 'peakBalanceType', 'peakBalance'));
     }
 }

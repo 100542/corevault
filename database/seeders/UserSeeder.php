@@ -8,20 +8,36 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-
     public function run(): void
     {
-        User::create([
-            'username' => 'test1',
-            'password' => Hash::make('coolpasswordd')
-        ]);
-        User::create([
-            'username' => 'test2',
-            'password' => Hash::make('coolpasswordd')
-        ]);
-        User::create([
-            'username' => 'test3',
-            'password' => Hash::make('coolpasswordd')
-        ]);
+        $users = [
+            'Gerald',
+            'Cryptomaster33',
+            'Johan7',
+            'TradingPro42',
+            'CryptoQueen',
+            'BlockchainBob',
+            'FinanceGuru99',
+            'CoinCollector',
+            'WalletWizard',
+            'InvestorPro',
+            'CryptoKing88',
+            'TokenTrader',
+            'BitMaster',
+            'HashHunter',
+            'DigitalDragon',
+            'CoinKeeper',
+            'MarketMaster',
+            'TradeExpert',
+            'ChainChampion',
+            'CryptoNinja'
+        ];
+
+        foreach ($users as $username) {
+            User::create([
+                'username' => $username,
+                'password' => Hash::make('coolpasswordd')
+            ]);
+        }
     }
 }

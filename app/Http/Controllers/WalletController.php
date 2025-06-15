@@ -101,6 +101,6 @@ class WalletController extends Controller
      */
     private function generateWalletAddress()
     {
-        return '0x' . substr(md5(uniqid(mt_rand(), true)), 0, 32);
+        return '0x' . substr(md5(uniqid(mt_rand(), true)), 0, 40);
     }
 }
