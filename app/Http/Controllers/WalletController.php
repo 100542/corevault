@@ -96,6 +96,95 @@ class WalletController extends Controller
         return redirect()->route('wallets.page')->with('success', "Deposit successful! Converted {$usdAmount} USD to {$cryptoAmount} {$walletType}.");
     }
 
+    public function withdraw(Request $request)
+    {
+        $request->validate([
+            'wallet_id' => 'required|exists:wallets,id',
+            'amount' => 'required|numeric|min:0.01',
+        ]);
+
+        $user = Auth::user();
+        $walletId = $request->wallet_id;
+        $usdAmount = $request->amount;
+
+        $wallet = $user->wallets()->where('wallet_id', $walletId)->first();
+
+        if (!$wallet) {
+            return redirect()->back()->with('error', 'Unauthorized access to this wallet.');
+        }
+
+        $walletType = strtoupper($wallet->type);
+        $symbol = $walletType . 'USDT';
+
+        $response = Http::withoutVerifying()->get("https://api.binance.com/api/v3/klines", [
+            'symbol' => $symbol,
+            'interval' => '1h',
+            'limit' => 1
+        ]);
+
+        if (!$response->successful()) {
+            return redirect()->back()->with('error', 'Failed to fetch exchange rate.');
+        }
+
+        $data = $response->json();
+        $rate = (float) $data[0][4];
+
+        $cryptoAmount = $usdAmount / $rate;
+
+        $currentBalance = $wallet->pivot->balance;
+
+        $user->wallets()->updateExistingPivot($walletId, [
+            'balance' => $currentBalance - $cryptoAmount
+        ]);
+
+        return redirect()->route('wallets.page')->with('success', "Withdraw successful! Converted {$usdAmount} USD to {$cryptoAmount} {$walletType} and removed from your wallet.");
+    }
+
+    public function lowAutomatization(Request $request)
+    {
+        $request->validate([
+            'wallet_id' => 'required|exists:wallets,id',
+            'low' => 'required|numeric|min:0.01',
+        ]);
+
+        $user = Auth::user();
+        $walletId = $request->wallet_id;
+        $lowThreshold = $request->low;
+
+        $wallet = $user->wallets()->where('wallet_id', $walletId)->first();
+
+        if (!$wallet) {
+            return redirect()->back()->with('error', 'Unauthorized access to this wallet.');
+        }
+
+        $walletType = strtoupper($wallet->type);
+        $symbol = $walletType . 'USDT';
+
+        $response = Http::withoutVerifying()->get("https://api.binance.com/api/v3/klines", [
+            'symbol' => $symbol,
+            'interval' => '1h',
+            'limit' => 1
+        ]);
+
+        if (!$response->successful()) {
+            return redirect()->back()->with('error', 'Failed to fetch exchange rate.');
+        }
+
+        $data = $response->json();
+        $rate = (float) $data[0][4];
+
+        $currentBalance = $wallet->pivot->balance;
+        $currentUsdValue = $currentBalance * $rate;
+
+        if ($currentUsdValue <= $lowThreshold) {
+            $user->wallets()->updateExistingPivot($walletId, [
+                'balance' => 0
+            ]);
+
+            return redirect()->route('wallets.page')->with('success', "Wallet balance sold automatically as its USD value hit the low threshold.");
+        }
+    }
+
     /**
      * @return string
      */

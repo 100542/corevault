@@ -63,7 +63,7 @@
     @if($wallets->isEmpty())
         <p class="text-[#C4FFCE] text-center">You don't have any wallets yet. Create one in the form.</p>
     @else
-        <ul class="space-y-4 mb-6 grid grid-cols-5 gap-16 ">
+        <ul class="space-y-4 mb-6 grid grid-cols-5 gap-16 max-h-96 overflow-y-scroll">
             @foreach ($wallets as $wallet)
                 <li class="bg-[#8DB295] min-w-fit p-4 flex flex-col gap-2 rounded-lg shadow-md">
                     <strong class="block text-[#040604] font-extrabold text-lg">{{ $wallet->name }}</strong>
@@ -77,49 +77,42 @@
                         <input type="number" name="amount" class="p-2 text-sm rounded-lg text-[#C4FFCE] bg-[#040604]" placeholder="Amount in $...">
                         <button class="text-[#C4FFCE] bg-[#040604] p-2 text-sm rounded-lg">Deposit</button>
                     </form>
+                    <form action="{{ route('wallets.withdraw') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="wallet_id" value="{{ $wallet->id }}">
+                        <input type="number" name="amount" class="p-2 text-sm rounded-lg text-[#C4FFCE] bg-[#040604]" placeholder="Amount in $...">
+                        <button class="text-[#C4FFCE] bg-[#040604] p-2 text-sm rounded-lg">Withdraw</button>
+                    </form>
+                    <h1 class="text-[#040604] text-lg font-bold">Transaction Automatization</h1>
+                    <form action="{{ route('wallets.withdraw') }}" method="POST" class="flex flex-col gap-2">
+                        @csrf
+                        <input type="hidden" name="wallet_id" value="{{ $wallet->id }}">
+                        <label for="low" name="low" class="text-[#040604]">Sell all currency when portfolio reaches:</label>
+                        <input type="number" name="low" class="p-2 text-sm rounded-lg text-[#C4FFCE] bg-[#040604]" placeholder="Value in USD">
+                        <button class="text-[#C4FFCE] bg-[#040604] p-2 text-sm rounded-lg">Automatize</button>
+                    </form>
+                    <form action="{{ route('wallets.withdraw') }}" method="POST" class="flex flex-col gap-2">
+                        <label for="high" name="high" class="text-[#040604]">Buy certain amount when portfolio reaches:</label>
+                        <input type="number" name="low" class="p-2 text-sm rounded-lg text-[#C4FFCE] bg-[#040604]" placeholder="Value in USD">
+                        <input type="number" name="buyinamount" class="p-2 text-sm rounded-lg text-[#C4FFCE] bg-[#040604]" placeholder="Value in USD">
+                        <button class="text-[#C4FFCE] bg-[#040604] p-2 text-sm rounded-lg">Automatize</button>
+                    </form>
                 </li>
             @endforeach
         </ul>
     @endif
     <div class="absolute bottom-0 -z-10 opacity-10 overflow-x-hidden flex flex-row justify-center gap-4 max-w-[97dvw] items-end">
-        <div class="h-[320px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[600px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[450px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[510px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[390px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[470px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[520px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[360px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[590px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[300px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[580px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[460px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[500px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[340px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[480px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[530px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[310px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[560px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[440px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[490px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[370px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[455px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[540px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[350px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[570px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[330px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[585px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[430px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[510px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[390px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[460px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[520px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[315px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[595px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[445px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[505px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[375px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[455px] w-14 bg-[#8DB295]"></div>
+        @php
+            $colors = ['#7CD789', '#8DB295'];
+        @endphp
+
+        @for ($i = 0; $i < 40; $i++)
+            @php
+                $height = rand(300, 600);
+                $color = $colors[$i % 2];
+            @endphp
+            <div class="h-[{{ $height }}px] w-14" style="background-color: {{ $color }}"></div>
+        @endfor
     </div>
 </main>
 </body>

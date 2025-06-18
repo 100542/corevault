@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/insights', [InsightsController::class, 'index'])->name('insights.page');
     Route::post('/wallets/create', [WalletController::class, 'create'])->name('wallets.create');
     Route::post('/wallets/deposit', [WalletController::class, 'deposit'])->name('wallets.deposit');
+    Route::post('wallets/withdraw', [WalletController::class, 'withdraw'])->name('wallets.withdraw');
     Route::get('/trade', [TradeController::class, 'index'])->name('trade.page');
     Route::post('/trade/send', [TradeController::class, 'sendMessage'])->middleware('auth')->name('trade.send');
     Route::post('/trade/wiretransfer', [TradeController::class, 'wireTransfer'])->middleware('auth')->name('trade.wiretransfer');

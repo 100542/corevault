@@ -138,44 +138,17 @@
     </div>
 
     <div class="absolute bottom-0 -z-10 opacity-10 overflow-x-hidden flex flex-row justify-center gap-4 max-w-[97dvw] items-end">
-        <div class="h-[320px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[600px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[450px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[510px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[390px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[470px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[520px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[360px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[590px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[300px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[580px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[460px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[500px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[340px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[480px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[530px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[310px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[560px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[440px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[490px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[370px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[455px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[540px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[350px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[570px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[330px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[585px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[430px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[510px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[390px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[460px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[520px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[315px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[595px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[445px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[505px] w-14 bg-[#8DB295]"></div>
-        <div class="h-[375px] w-14 bg-[#7CD789]"></div>
-        <div class="h-[455px] w-14 bg-[#8DB295]"></div>
+        @php
+            $colors = ['#7CD789', '#8DB295'];
+        @endphp
+
+        @for ($i = 0; $i < 40; $i++)
+            @php
+                $height = rand(300, 600);
+                $color = $colors[$i % 2];
+            @endphp
+            <div class="h-[{{ $height }}px] w-14" style="background-color: {{ $color }}"></div>
+        @endfor
     </div>
 </main>
 </body>
