@@ -31,7 +31,7 @@ class WalletController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:wallets,name',
+            'name' => 'required|string|max:20|unique:wallets,name',
         ]);
 
         $user = Auth::user();

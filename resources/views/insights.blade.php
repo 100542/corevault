@@ -20,19 +20,17 @@
         <h1 class="text-4xl text-[#C4FFCE] font-bold">Insights & Analysis</h1>
         <p class="text-gray-400 mt-2">Welcome back, <span class="text-[#C4FFCE] font-semibold">{{ $user->username }}</span>!</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 mb-12">
+    <div class="grid grid-cols-2 gap-8 mb-12">
         <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
             <p class="text-sm text-[#040604] mb-2">Your most enjoyed currency</p>
             <h2 class="text-[#040604] font-black text-lg">{{ strtoupper($peakBalanceType) }}</h2>
-            <h2 class="text-[#040604] font-black text-lg">Holding: {{ strtoupper($peakBalance) }}</h2>
+            <h2 class="text-[#040604] font-black text-lg">Holding: {{ number_format($peakBalance, 6) }}</h2>
         </div>
         <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
-            <p class="text-sm text-[#040604]"></p>
-            <h2 class="text-[#040604] font-black text-lg my-4">Loading...</h2>
-        </div>
-        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
-            <p class="text-sm text-[#040604]">Time And Date (European Format)</p>
-            <h2 class="text-[#040604] text-3xl font-black mt-2">Loading...</h2>
+            <h2 class="text-[#040604] font-black text-lg mb-2">Fact-Based Trading Advice</h2>
+            <p class="text-sm text-[#040604]">Currencies to be holding:</p>
+            <p class="text-sm text-[#040604]">Currencies to be selling:</p>
+            <p class="text-sm text-[#040604]">Diversity advices:</p>
         </div>
     </div>
 
@@ -78,4 +76,5 @@
     </div>
 </main>
 </body>
+<script src="/js/cryptoNewsApi.js"></script>
 </html>

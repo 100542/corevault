@@ -59,7 +59,9 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect('/login')->with('success', 'Account Created! Welcome to Corevault!');
+        $user = User::where('username', $request->username)->first();
+        Auth::login($user);
+        return redirect('/dashboard')->with('success', 'Account Created! Welcome to Corevault!');
     }
 
     /**

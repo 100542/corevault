@@ -87,8 +87,24 @@
                     Register
                 </button>
 
-                @if ($errors->any())
-                    <p class="text-red-500 font-semibold text-lg text-center mt-2">{{ $errors->first() }}</p>
+                @if(session('success'))
+                    <div class="absolute top-6 items-center">
+                        <div class="bg-[#C4FFCE] text-[#040604] font-bold p-4 rounded-md shadow-md">
+                            {{ session('success') }}
+                        </div>
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="absolute top-6 items-center">
+                        <div class="bg-red-500 text-[#040604] font-bold p-4 rounded-md shadow-md">
+                            <ul class="pl-4">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 @endif
 
                 <p class="text-lg text-center hover:cursor-pointer underline underline-offset-8 font-light text-white/90 tracking-widest mt-4">

@@ -15,6 +15,25 @@
 @include('nav')
 
 <main class="p-10">
+    @if(session('success'))
+        <div class="absolute top-6 items-center">
+            <div class="bg-[#C4FFCE] text-[#040604] font-bold p-4 rounded-md shadow-md">
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
+    @if($errors->any())
+        <div class="absolute top-6 items-center">
+            <div class="bg-red-500 text-[#040604] font-bold p-4 rounded-md shadow-md">
+                <ul class="pl-4">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     <div class="mb-12">
         <h1 class="text-4xl text-[#C4FFCE] font-bold">Dashboard Overview</h1>
         <p class="text-gray-400 mt-2">Welcome back, <span class="text-[#C4FFCE] font-semibold">{{ $user->username }}</span>!</p>

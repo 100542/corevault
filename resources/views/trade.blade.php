@@ -23,7 +23,7 @@
         <section class="flex min-h-[75dvh] flex-row justify-between">
             @if(session('success'))
                 <div class="absolute top-6 items-center">
-                    <div class="bg-[#C4FFCE] p-4 rounded-md shadow-md">
+                    <div class="bg-[#C4FFCE] text-[#040604] font-bold p-4 rounded-md shadow-md">
                         {{ session('success') }}
                     </div>
                 </div>
@@ -31,7 +31,7 @@
 
             @if($errors->any())
                 <div class="absolute top-6 items-center">
-                    <div class="bg-red-500 p-4 rounded-md shadow-md">
+                    <div class="bg-red-500 text-[#040604] font-bold p-4 rounded-md shadow-md">
                     <ul class="pl-4">
                         @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>

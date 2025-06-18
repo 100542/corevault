@@ -19,8 +19,22 @@
         <h2 class="text-4xl text-[#C4FFCE] text-left mb-2 font-bold">Your Personal Wallet Dashboard.</h2>
 
         @if(session('success'))
-            <div class="bg-green-500 text-white p-3 rounded mb-4 text-center">
-                {{ session('success') }}
+            <div class="absolute top-6 items-center">
+                <div class="bg-[#C4FFCE] text-[#040604] font-bold p-4 rounded-md shadow-md">
+                    {{ session('success') }}
+                </div>
+            </div>
+        @endif
+
+        @if($errors->any())
+            <div class="absolute top-6 items-center">
+                <div class="bg-red-500 text-[#040604] font-bold p-4 rounded-md shadow-md">
+                    <ul class="pl-4">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         @endif
 

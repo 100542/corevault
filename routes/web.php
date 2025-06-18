@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\MarketController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\InsightsController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +30,9 @@ Route::get('/', function () {
 })->name('index.page');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/editUsername', [ProfileController::class, 'editUsername'])->name('profile.editUsername');
+    Route::post('/editPassword', [ProfileController::class, 'editPassword'])->name('profile.editPassword');
     Route::get('/dashboard', [DashboardController::class, 'wallets'])->name('dashboard');
     Route::get('/wallets', [WalletController::class, 'index'])->name('wallets.page');
     Route::get('/insights', [InsightsController::class, 'index'])->name('insights.page');
@@ -36,7 +41,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/trade', [TradeController::class, 'index'])->name('trade.page');
     Route::post('/trade/send', [TradeController::class, 'sendMessage'])->middleware('auth')->name('trade.send');
     Route::post('/trade/wiretransfer', [TradeController::class, 'wireTransfer'])->middleware('auth')->name('trade.wiretransfer');
-    Route::get('/market', function () {
-        return view('market', ['user' => Auth::user()]);
-    })->name('market.page');
+    Route::get('/market', [MarketController::class, 'index'])->name('market.page');
+    Route::post('/market/deposit', [MarketController::class, 'marketDeposit'])->name('market.deposit');
 });
