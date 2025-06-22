@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/editUsername', [ProfileController::class, 'editUsername'])->name('profile.editUsername');
     Route::post('/editPassword', [ProfileController::class, 'editPassword'])->name('profile.editPassword');
-    Route::get('/dashboard', [DashboardController::class, 'wallets'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/wallets', [WalletController::class, 'index'])->name('wallets.page');
     Route::get('/insights', [InsightsController::class, 'index'])->name('insights.page');
     Route::post('/wallets/create', [WalletController::class, 'create'])->name('wallets.create');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Message;
 
 /**
  *
@@ -14,13 +15,16 @@ class DashboardController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View|object
      */
-    public function wallets()
+    public function index()
     {
         $user = auth()->user();
         $wallets = $user->wallets()->withPivot('balance')->get();
         $totalBalance = $this->getTotalBalance();
 
-        return view('dashboard', compact('user', 'wallets', 'totalBalance'));
+        $userMessages = Message::where('recipient_id', $user->id)->get();
+        $messageSender = Message::where('recipient_id', $user->id)->with('sender')->get();
+
+        return view('dashboard', compact('user', 'wallets', 'totalBalance', 'userMessages', 'messageSender'));
     }
 
     /**

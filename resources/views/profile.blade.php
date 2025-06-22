@@ -121,6 +121,7 @@
                                     @csrf
                                     <label for="password">Enter your desired password</label>
                                     <input type="password" name="password" class="p-2 rounded-md bg-[#C4FFCE] text-[#040604] placeholder-[#040604]/70" placeholder="Enter your new password...">
+                                    <input type="password" name="password_confirmed" class="p-2 rounded-md bg-[#C4FFCE] text-[#040604] placeholder-[#040604]/70" placeholder="Confirm your new password...">
                                     <button type="submit" class="p-2 rounded-md bg-[#C4FFCE] mt-2 text-[#040604] hover:border hover:bg-[#040604] hover:border-[#C4FFCE] hover:text-[#C4FFCE] duration-300 font-bold">Edit Password</button>
                                 </form>
                             </div>
@@ -128,6 +129,11 @@
                     </div>
                 </template>
             </div>
+        </div>
+        <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
+            <p class="text-lg text-[#040604] font-bold">Account Statistics</p>
+            <p class="text-sm text-[#040604]">Created at: <span class="font-bold">{{ $user->created_at }}</span></p>
+            <p class="text-sm text-[#040604]">Most recent update: <span class="font-bold">{{ $user->updated_at }}</span></p>
         </div>
         <div class="bg-[#8DB295] p-6 rounded-2xl shadow-md">
             <p class="text-lg text-[#040604]">Wallet Adresses And Types</p>

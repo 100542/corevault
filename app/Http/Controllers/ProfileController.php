@@ -36,8 +36,12 @@ class ProfileController extends Controller
                 'required',
                 'string',
                 'min:8',
-                'regex:/^(?=.*[A-Z])(?=.*[\W_]).+$/'
+                'regex:/^(?=.*[A-Z])(?=.*[\W_]).+$/',
+                'confirmed'
             ],
+        ], [
+            'password.regex' => 'Password must contain at least one uppercase letter and one special character.',
+            'password.confirmed' => 'Passwords do not match. Please verify.'
         ]);
 
         $user = auth()->user();
