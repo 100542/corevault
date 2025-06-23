@@ -44,4 +44,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/trade/wiretransfer', [TradeController::class, 'wireTransfer'])->middleware('auth')->name('trade.wiretransfer');
     Route::get('/market', [MarketController::class, 'index'])->name('market.page');
     Route::post('/market/deposit', [MarketController::class, 'marketDeposit'])->name('market.deposit');
+    Route::post('/insights/chat', [InsightsController::class, 'generateTradingAdvice'])->name('insights.chat');
 });

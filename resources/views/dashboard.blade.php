@@ -99,7 +99,7 @@
             <h2 class="text-2xl text-[#040604] font-bold mb-4">Inbox</h2>
             <div class="p-4 flex flex-col gap-2 rounded-xl text-center">
                 @foreach ($userMessages as $message)
-                    <p class="bg-[#040604] p-2 rounded-lg text-lg text-[#C4FFCE] mb-2 font-semibold">From: {{ $messageSender }} {{ $message->body }}</p>
+                    <p class="bg-[#040604] p-2 rounded-lg text-lg text-[#C4FFCE] mb-2 font-semibold">Message: {{ $message->body }}</p>
                 @endforeach
             </div>
         </div>

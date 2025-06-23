@@ -12,29 +12,29 @@
 </head>
 <body class="bg-[#040604] text-white">
 
-<nav class="backdrop-blur-2xl sticky top-0 w-full h-20 flex justify-between items-center px-8">
+<nav class="sticky top-0 w-full h-20 flex justify-between items-center px-8">
     <div class="flex flex-row gap-4">
         <img src="/logo.svg" alt="Logo" class="w-14 h-14 hover:rotate-[360deg] duration-300">
     </div>
 
     @if (Auth::check())
     <div class="flex gap-16 tracking-wide text-lg">
-        <a href="{{ route('dashboard') }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('dashboard') ?
+        <a href="{{ route('dashboard') }}" class="hover:scale-105 backdrop-blur-2xl hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('dashboard') ?
 'bg-[#C4FFCE] text-black' : '' }}">Dashboard</a>
-        <a href="{{ route('market.page') }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('market.page') ?
+        <a href="{{ route('market.page') }}" class="hover:scale-105 backdrop-blur-2xl hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('market.page') ?
 'bg-[#C4FFCE] text-black' : '' }}">Markets</a>
         <a href="{{ route('trade.page') }} {{ request()->routeIs('trade') ?
-'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Trade</a>
+'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] backdrop-blur-2xl hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Trade</a>
         <a href="{{ route('wallets.page') }} {{ request()->routeIs('wallets.page') ?
-'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Wallets</a>
+'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] backdrop-blur-2xl hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Wallets</a>
         <a href="{{ route('insights.page') }} {{ request()->routeIs('insights.page') ?
-'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Insights</a>
+'bg-[#C4FFCE] text-black' : '' }}" class="hover:scale-105 hover:bg-[#C4FFCE] backdrop-blur-2xl hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition ">Insights</a>
     </div>
     @else
         <div class="flex gap-16 tracking-wide text-lg">
-            <a href="{{ route('index.page') }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('dashboard') ?
+            <a href="{{ route('index.page') }}" class="hover:scale-105 hover:bg-[#C4FFCE] backdrop-blur-2xl hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('dashboard') ?
 'bg-[#C4FFCE] text-[#040604]' : '' }}">Home</a>
-            <a href="{{ route('login') }}" class="hover:scale-105 hover:bg-[#C4FFCE] hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('dashboard') ?
+            <a href="{{ route('login') }}" class="hover:scale-105 hover:bg-[#C4FFCE] backdrop-blur-2xl hover:text-black border-2 border-[#C4FFCE] text-[#C4FFCE] p-3 font-black rounded-lg shadow-md transition {{ request()->routeIs('dashboard') ?
 'bg-[#C4FFCE] text-[#040604]' : '' }}">Login</a>
         </div>
     @endif
